@@ -12,8 +12,8 @@ State<StatefulWidget> createState(){
 
 class LoginState extends State<LoginScreen> {
   final _formKey = GlobalKey <FormState>();
-   String _email;
-   String _password;
+   String _email='';
+   String _password='';
   
  void submit (){
    log(_email);
@@ -39,7 +39,7 @@ class LoginState extends State<LoginScreen> {
                      hintText: 'you@somewhere.com',
                    ),
                    onSaved: (value) {
-                     _email = value;
+                     _email = value.toString();
                    },
                  ),
                  TextFormField(
@@ -47,15 +47,15 @@ class LoginState extends State<LoginScreen> {
                      labelText: 'Password'
                    ),
                    onSaved: (value) {
-                     _password = value;
+                     _password = value.toString();
                    },
                  ),
                  SizedBox(
                    width: double.infinity,
-                   child: FlatButton(
+                   child: ElevatedButton(
                      child: Text('Login'),
                      onPressed: () {
-                      _formKey.currentState.save();
+                      _formKey.currentState?.save();
 
                       this.submit();
                      },
