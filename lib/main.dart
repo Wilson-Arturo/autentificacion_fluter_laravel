@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersanctum/providers/auth.dart';
 import 'package:fluttersanctum/widgets/nav-drawer.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Auth(),
+      child: MyApp()
+      )
+    );
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: NavDrawer(),
       body: Center(
-        child: Text('You are not logged in')
+        child: Consumer<Auth>(
+          builder: (context, auth, child) {
+           if (auth.authenticated) {
+             return Text('You are logged in');
+           } else {
+             return Text('You are not logged in');
+           }
+          },
+        )
       ),
      );
   }
