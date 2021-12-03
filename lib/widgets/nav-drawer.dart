@@ -26,7 +26,7 @@ child: Consumer<Auth>(
           ListTile(
     title: Text('Logut'),
     onTap: () {
-      //
+      Provider.of<Auth>(context, listen: false).logout();
     },
           )
        ],
